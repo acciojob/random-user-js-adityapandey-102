@@ -5,7 +5,6 @@ const handleGetUser=async()=>{
 	let user= await fetch("https://randomuser.me/api/");
 	let userData=await user.json();
 	UserData=userData.results[0];
-	console.log(UserData);
 	document.getElementById("image").src=UserData.picture.large;
 	let fullName=UserData.name.first+" "+UserData.name.last;
 	document.getElementById("userName").innerText=fullName;
