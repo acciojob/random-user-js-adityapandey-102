@@ -1,20 +1,26 @@
 //your code here
 let UserData={}
-const handleGetUser=()=>{
+const handleGetUser=async()=>{
+	document.getElementById("content").style.display="none";
 	let user= await fetch("https://randomuser.me/api/");
 	let userData=await user.json();
-	console.log(userData);
-	UserData=userData;
-	document.getElementById("image").innerURL=UserData.image;
-	document.getElementById("userName").innerText=UserData.name;
+	UserData=userData.results[0];
+	console.log(UserData);
+	document.getElementById("image").src=UserData.picture.large;
+	let fullName=UserData.name.first+" "+UserData.name.last;
+	document.getElementById("userName").innerText=fullName;
 
 }
 const handleAge=()=>{
-	document.getElementById("content").innerText=UserData.age;
+	document.getElementById("content").innerHTML=UserData.dob.age;
+	document.getElementById("content").style.display="block";
 }
 const handleEmail=()=>{
-	document.getElementById("content").innerText=UserData.email;
+	document.getElementById("content").innerHTML=UserData.email;
+	document.getElementById("content").style.display="block";
 }
 const handlePhone=()=>{
-	document.getElementById("content").innerText=UserData.Phone;
+	document.getElementById("content").innerText=UserData.phone;
+	document.getElementById("content").style.display="block";
 }
+console.log(UserData)
